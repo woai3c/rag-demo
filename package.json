@@ -1,0 +1,20 @@
+{
+  "name": "rag-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RAG (Retrieval-Augmented Generation) 教学示例项目",
+  "workspaces": [
+    "packages/server",
+    "packages/web"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:web\"",
+    "dev:server": "npm run dev -w packages/server",
+    "dev:web": "npm run dev -w packages/web",
+    "build": "npm run build -w packages/server && npm run build -w packages/web",
+    "ingest": "npm run ingest -w packages/server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
