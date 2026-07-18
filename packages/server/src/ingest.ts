@@ -11,7 +11,7 @@ async function main() {
   const { provider, model, dimensions } = getEmbeddingInfo();
   console.log(`Embedding 方案: ${provider} / ${model} (${dimensions} 维)\n`);
 
-  console.log(`准备索引 ${SEED_DOCUMENTS.length} 份内置虚构资料:\n`);
+  console.log(`准备索引 ${SEED_DOCUMENTS.length} 份内置示例资料:\n`);
   for (const document of SEED_DOCUMENTS) {
     console.log(`  - ${document.source}`);
   }

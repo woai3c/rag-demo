@@ -1,4 +1,12 @@
 import { useEffect, useRef, useState, type CSSProperties, type FormEvent } from 'react';
+import ReactMarkdown, { type Components } from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
+const markdownComponents: Components = {
+  a: ({ node: _node, ...props }) => (
+    <a {...props} target="_blank" rel="noreferrer" />
+  ),
+};
 
 interface Source {
   chunk: {
@@ -374,7 +382,15 @@ export default function App() {
                 <span> · Agent {message.agent.steps} 步 / {message.agent.searches} 次检索 / {message.agent.historyMessages} 条历史</span>
               )}
             </div>
-            <div style={styles.messageContent}>{message.content}</div>
+            {message.role === 'assistant' && message.conversational ? (
+              <div className="markdown-body">
+                <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                  {message.content}
+                </ReactMarkdown>
+              </div>
+            ) : (
+              <div style={styles.messageContent}>{message.content}</div>
+            )}
             {message.sources && message.sources.length > 0 && (
               <details style={styles.sources}>
                 <summary>证据来源与分数（{message.sources.length}）</summary>

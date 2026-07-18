@@ -7,10 +7,11 @@
 - 本地 ONNX Embedding：`Xenova/multilingual-e5-small`，384 维，q8 量化权重，并固定模型 revision
 - 混合检索：余弦相似度向量检索 + BM25 关键词检索
 - 分数解释：展示两路原始分、归一化分、加权贡献和最终融合分
-- 完整 RAG：Top-K 证据组装、LLM 生成、来源展示
+- 完整 RAG：Top-K 片段组装、LLM 生成、来源展示
+- Markdown 回答：使用 `react-markdown` 和 `remark-gfm` 渲染标题、列表、表格、引用与代码块
 - 国内模型预设：DeepSeek、阿里云百炼/Qwen、智谱 GLM、Kimi/Moonshot、火山方舟/豆包、百度千帆
 - 自定义 OpenAI-compatible 服务
-- 内置虚构教学资料，首次索引后即可复现示例问题
+- 内置资料均为 mock 数据，首次索引后即可复现示例问题
 - 网页上传 `.md`、`.txt`、文本型 `.pdf`、`.docx`，并支持删除用户资料
 
 ## 运行环境
@@ -73,7 +74,7 @@ npm run ingest
 1. `@huggingface/transformers` 从 Hugging Face Hub 下载 `Xenova/multilingual-e5-small`。
 2. 本项目使用 q8 量化 ONNX 权重，并固定到 revision `761b726dd34fb83930e26aab4e9ac3899aa1fa78`。模型权重约 118 MB，加上 tokenizer 和配置文件，总下载量约 135 MB。
 3. 文件默认缓存在项目根目录的 `.cache/transformers/`，后续索引和启动会复用缓存。
-4. 服务端将 `seedDocuments.ts` 中的虚构教学资料分块、向量化，并写入 `data/vectors.json`。
+4. 服务端将 `seedDocuments.ts` 中的内置示例资料分块、向量化，并写入 `data/vectors.json`。
 
 模型由 Node.js 服务端下载和执行，不是由浏览器下载。下载耗时取决于网络速度；终端会显示下载进度。模型文件列表和大小可在 [固定 revision 的 Hugging Face 模型仓库](https://huggingface.co/Xenova/multilingual-e5-small/tree/761b726dd34fb83930e26aab4e9ac3899aa1fa78/onnx) 核对。
 
@@ -264,7 +265,7 @@ packages/server/src/
 ├── vectorStore.ts     # JSON 持久化、余弦相似度与 BM25
 ├── search.ts          # 混合召回、归一化与加权融合
 ├── documents.ts       # PDF/DOCX/MD/TXT 解析与上传索引
-├── seedDocuments.ts   # 内置虚构教学资料
+├── seedDocuments.ts   # 内置示例资料
 ├── ingest.ts          # 内置种子索引脚本
 ├── rag.ts             # Top-K 上下文组装与 LLM 生成
 └── index.ts           # Express API

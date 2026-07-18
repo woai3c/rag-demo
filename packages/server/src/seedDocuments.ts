@@ -3,6 +3,7 @@ export interface SeedDocument {
   content: string;
 }
 
+// 内置资料均为 mock 数据，只用于复现检索与生成流程。
 export const SEED_DOCUMENTS: SeedDocument[] = [
   {
     source: 'RAG 基础知识（内置）',
@@ -41,10 +42,8 @@ BM25 是经典的关键词相关度排序函数。它综合考虑查询词在当
 向量相似度和 BM25 分数的范围不同，不能直接相加。本 Demo 先分别归一化，再计算 0.7 × 向量分 + 0.3 × BM25 分。权重不是概率，也不是所有业务的固定最优值，应通过有标准答案的查询集调优。`,
   },
   {
-    source: '星河科技差旅与交通报销制度（虚构）',
+    source: '星河科技差旅与交通报销制度',
     content: `# 星河科技差旅与交通报销制度
-
-> 本资料是 RAG Demo 使用的虚构教学数据，不代表任何真实公司的制度。
 
 ## 市内交通费用
 
