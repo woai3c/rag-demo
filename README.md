@@ -1,6 +1,6 @@
 # RAG Demo
 
-一个完整的 RAG（Retrieval-Augmented Generation，检索增强生成）教学项目：服务端使用本地 ONNX 模型完成文档向量化，以向量检索和 BM25 进行混合召回，再调用配置的大语言模型生成带来源的回答。
+一个完整的 RAG（Retrieval-Augmented Generation，检索增强生成）教学项目：服务端使用本地 ONNX 模型完成文档向量化，以向量检索和 BM25 进行混合召回，再调用配置的大语言模型生成带来源的回答。文章地址：https://github.com/woai3c/Front-end-articles/issues/60
 
 ## 实现能力
 
