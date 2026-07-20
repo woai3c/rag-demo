@@ -146,3 +146,4 @@ vite.config.ts.timestamp-*
 data/
 *.onnx
 models/
+.x-code
