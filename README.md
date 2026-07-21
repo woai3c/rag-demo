@@ -273,10 +273,3 @@ packages/server/src/
 packages/web/src/App.tsx  # Demo 页面
 rag-article-outline.md     # 完整文章大纲与 Demo 规格
 ```
-
-## 安全提示
-
-- 不要提交 `.env`、模型缓存或 `data/vectors.json`。
-- 不要把真实敏感资料上传到不受信任的部署实例。
-- 调用 RAG 问答前，应确认所选 LLM 厂商的数据处理政策符合使用要求。
-- 生产环境还需要认证、权限过滤、审计、限流、恶意文件检测和提示注入防护。
